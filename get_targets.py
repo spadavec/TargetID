@@ -38,13 +38,14 @@ def main():
     collect = []
 
     parser = argparse.ArgumentParser(description='options parser for TargetID')
-    parser.add_argument('--input', dest="input_filename")
-    parser.add_argument('--threshold', dest="threshold")
+    parser.add_argument('--input', dest="input_filename", required=True)
+    parser.add_argument('--threshold', dest="threshold", required=True)
+    parser.add_argument('--output', dest="output_filename", required=True)
     args = parser.parse_args()
 
     filename = args.input_filename
     threshold = args.threshold
-
+    output_filename = args.output_filename
 
     smiles, activities = read_csv(filename)
 
@@ -69,7 +70,7 @@ def main():
                 collect.append(result)
 
 
-    write_csv(collect,filename)
+    write_csv(collect,output_filename)
 
 
 if __name__ == '__main__':
